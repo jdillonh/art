@@ -29,7 +29,7 @@ function preload(){
 function setup() {
     frameRate(30)
     // shaders require WEBGL mode to work
-    can = createCanvas( 800, 450, WEBGL );
+    can = createCanvas( window.innerWidth, window.innerHeight, WEBGL );
 
     DOMCanvas = can.canvas
     if( capturing ) {
