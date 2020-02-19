@@ -54,8 +54,8 @@ uniform float orbState[ numOrbs * 3 ];
 //const vec3 col1 = vec3(1., 1., 1.);//
 
   
-const vec3 col1 = vec3( 255./255., 240./255., 191./255.); //vec3( 255. / 255.0 , 172. / 255.0 , 156. / 255.0 ) ;//vec3(0., 0., 0.);//
-const vec3 col2 = vec3( 221./255., 162./255., 196./255.); //vec3( 0. / 255.0 , 40. / 255.0 , 43. / 255.0 ) ;//vec3(1., 1., 1.);//
+const vec3 col1 = vec3( 1.,1.,1.);//255./255., 240./255., 191./255.);
+const vec3 col2 = vec3( 221./255., 162./255., 196./255.);
 //  Function from Iñigo Quiles
 //  https://www.shadertoy.com/view/MsS3Wc
 vec3 hsb2rgb( in vec3 c ){
