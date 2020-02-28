@@ -20,6 +20,8 @@ var captureLen = 1270
 var DOMCanvas
 var capturing = false
 var capturer
+var lastMouseX
+var lastMouseY
 
 function preload(){
     // load the shader
@@ -60,11 +62,14 @@ function setup() {
 			       can.height )
 
     noiseLib.seed( Math.random() )
+
+    lastMouseX = mouseX
+    lastMouseY = mouseY
 }
 
 function draw() {
     time += dtime
-
+    
     if( time % PI  < 0.01 ) {
 	print( "cycle!" + frameCount )
     }
@@ -75,10 +80,12 @@ function draw() {
     uniformsShader.setUniform( 'time',
 			       time )
 
+    lastMouseX = lerp(lastMouseX, mouseX, 0.1);
+    lastMouseY = lerp(lastMouseY, mouseY, 0.1);
     uniformsShader.setUniform( 'mouseX',
-			       mouseX/width )
+			       lastMouseX/width);
     uniformsShader.setUniform( 'mouseY',
-			       mouseY/height )
+			       (lastMouseY/height) )
 
     for( let i = 0; i < allOrbs.length; i++ ) {
 	allOrbs[i].update()

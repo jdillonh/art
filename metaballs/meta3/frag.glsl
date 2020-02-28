@@ -73,7 +73,7 @@ void main() {
   vec2 uv = vTexCoord;
   uv.x *= AR;
   vec2 uvsinFactor = floor(uv*sqrness)/sqrness;
-  float sinFactor = 1000.0 * pNoise(10.0*uvsinFactor, 1);
+  float sinFactor = 900.0 * pNoise(10.0*uvsinFactor, 1);
   float d = 0.0; 
   float curr;
   for( int i = 0; i < numOrbs * 3; i += 3 ) {
@@ -86,7 +86,7 @@ void main() {
     d = 0.7;
   }
   else {
-    d += cos(time);
+    d += cos(time)*0.5;
     d = sin( d * sinFactor);// * sin( d * 10. );
   }
   //d = mix( sin( d * .5 ), (1.0 + sin( d * 2.0 )), (sin(time * 3.) / 2.) + 0.2 );

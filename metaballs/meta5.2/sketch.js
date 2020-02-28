@@ -13,14 +13,15 @@ let allOrbs;
 let can;
 let numOrbs = 8;
 let time = 0
-let dtime = 0.07
-let noiseLoopSize = 1
-var variance =0.1 
+let dtime = 0.005
 
-var captureLen = 1500
+
+var captureLen = 1270
 var DOMCanvas
 var capturing = false
 var capturer
+var lastMouseX
+var lastMouseY
 
 function preload(){
     // load the shader
@@ -30,14 +31,14 @@ function preload(){
 function setup() {
     frameRate(30)
     // shaders require WEBGL mode to work
-    can = createCanvas( 864, 1080, WEBGL );
+    can = createCanvas( window.innerWidth, window.innerHeight, WEBGL );
 
     DOMCanvas = can.canvas
     if( capturing ) {
 	capturer = new CCapture( {
 	    framerate : 30,
-	    format : 'png',
-	    //workersPath : '',
+	    format : 'gif',
+	    workersPath : '',
 	    verbose : false,
 	})
 	capturer.start()
@@ -61,11 +62,14 @@ function setup() {
 			       can.height )
 
     noiseLib.seed( Math.random() )
+
+    lastMouseX = mouseX
+    lastMouseY = mouseY
 }
 
 function draw() {
     time += dtime
-
+    
     if( time % PI  < 0.01 ) {
 	print( "cycle!" + frameCount )
     }
@@ -74,7 +78,14 @@ function draw() {
 			       arrayify( allOrbs ))
 
     uniformsShader.setUniform( 'time',
-			       time/10 )
+			       time )
+
+    lastMouseX = lerp(lastMouseX, mouseX, 0.1);
+    lastMouseY = lerp(lastMouseY, mouseY, 0.1);
+    uniformsShader.setUniform( 'mouseX',
+			       lastMouseX/width);
+    uniformsShader.setUniform( 'mouseY',
+			       (lastMouseY/height) )
 
     for( let i = 0; i < allOrbs.length; i++ ) {
 	allOrbs[i].update()
@@ -98,7 +109,6 @@ function draw() {
 }
 
 function windowResized(){
-    throw "do not resize window"
     //resizeCanvas( windowWidth, windowHeight );
     uniformsShader.setUniform( 'width',
 			       can.width )
@@ -119,8 +129,8 @@ class Orb {
 	this.dx = ( Math.random() * 2 - 1 ) * 3
 	this.dy = ( Math.random() * 2 - 1 ) * 3
 
-	this.xOff = Math.random()*noiseLoopSize
-	this.yOff = Math.random()*noiseLoopSize
+	this.xOff = Math.random() 
+	this.yOff = Math.random() 
     }
 
     update() {
@@ -128,7 +138,7 @@ class Orb {
     }
 
     perlinUpdate() {
-	let newPos = getNoisePos( this.xOff, this.yOff, time, variance)
+	let newPos = getNoisePos( this.xOff, this.yOff, time )
 	this.x = (newPos.x * width/2) + (width/2)
 	this.y = (newPos.y * height/2) + (height/2)
     }

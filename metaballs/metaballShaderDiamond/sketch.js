@@ -24,15 +24,17 @@ function preload(){
 
 function setup() {
 
-    capturer = new CCapture( {
-	framerate : 60,
-	format : 'png',
-	verbose : false,
-    })
+    /*
+      capturer = new CCapture( {
+      framerate : 60,
+      format : 'png',
+      verbose : false,
+      })
+    */
     
     // shaders require WEBGL mode to work
     can = createCanvas( windowWidth, windowHeight, WEBGL );
-    capturer.start()
+    //capturer.start()
 
     DOMCanvas = can.canvas
 
@@ -66,17 +68,18 @@ function draw() {
     // rect gives us some geometry on the screen
     rect( 0, 0, width, height);
 
-
-    if( capturing ) {
-    if( frameCount < captureLen ) {
-	capturer.capture( DOMCanvas )
-    }
-    else if( frameCount === captureLen ) {
-	console.log( " all done " );
-	capturer.stop()
-	capturer.save()
-    }
-    }
+    /*
+      if( capturing ) {
+      if( frameCount < captureLen ) {
+      capturer.capture( DOMCanvas )
+      }
+      else if( frameCount === captureLen ) {
+      console.log( " all done " );
+      capturer.stop()
+      capturer.save()
+      }
+      }
+    */
 }
 
 function windowResized(){
