@@ -1,0 +1,4 @@
+
+* /art
+Hi this is my generative art sketchbook. 
+Check it out [[https://jdillonh.github.io/art/index.html][here]].
