@@ -20,12 +20,14 @@ var DOMCanvas
 var capturing = false
 
 function setup() {
-    capturer = new CCapture( {
-	framerate : 30,
-	format : 'gif',
-	workersPath : '',
-	verbose : true,
-    })
+    if( capturing ) {
+	capturer = new CCapture( {
+	    framerate : 30,
+	    format : 'gif',
+	    workersPath : '',
+	    verbose : true,
+	})
+    }
     frameRate(30)
     can = createCanvas( 900,
 			600 )
@@ -64,8 +66,9 @@ function setup() {
 	allSocks.push( currRow )
     }
 
-    if( capturing )
+    if( capturing ) {
 	capturer.start()
+    }
 
 }
 

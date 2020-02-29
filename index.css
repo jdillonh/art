@@ -20,12 +20,12 @@ body {
     width: calc(12*16px);
     height: calc(12*16px);
     display: inline-block;
-    background-color: grey;
+    background-color: #1F1F1F;
     opacity: 50%;
     transition: 0.7s;
     margin-bottom: 4px;
     padding: 20px;
-    color: black;
+    color: white;
     text-decoration: none;
     vertical-align: top;
     overflow-wrap: break-word ;
@@ -33,11 +33,12 @@ body {
 
 .piece:hover{
     opacity: 95%;
+    color: white;
 }
 
 
 canvas {
-    position: absolute;
+    position: fixed;
     top: 0;
     left:0;
     width: 100%;

@@ -23,7 +23,7 @@ colors = [ "red", "orange", "yellow",
 
 var captureLen = 214
 var DOMCanvas
-var capturing = true
+var capturing = false
 
 function setup() {
     capturer = new CCapture( {
