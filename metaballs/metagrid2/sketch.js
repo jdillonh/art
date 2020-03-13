@@ -52,6 +52,8 @@ function setup() {
 
     uniformsShader.setUniform( 'height',
 			       can.height )
+    uniformsShader.setUniform("col1", [1,1,1]);
+
 }
 
 function draw() {
@@ -98,6 +100,26 @@ function draw() {
     }
 })();
 (function() {
+    var el = document.getElementById("col1");
+    el.oninput = () => {
+	console.log(el.value);
+	var col = color(el.value);
+	uniformsShader.setUniform(
+	    "col1",
+	    [col._getRed()/255, col._getGreen()/255, col._getBlue()/255]);
+    }
+})();
+(function() {
+    var el = document.getElementById("col2");
+    el.oninput = () => {
+	console.log(el.value);
+	var col = color(el.value);
+	uniformsShader.setUniform(
+	    "col2",
+	    [col._getRed()/255, col._getGreen()/255, col._getBlue()/255]);
+    }
+})();
+(function() {
     var el = document.getElementById("reset");
 
     el.onclick = () => {
@@ -117,6 +139,14 @@ window.onload = () => {
     document.getElementById("smoothness").value = 0;
     document.getElementById("thresh").value = 0;
     document.getElementById("density").value = 0;
+    document.getElementById("col1").value = "#FFFFFF";
+    document.getElementById("col2").value = "#000000";
+
+
+
+
+    document.getElementById("col2").oninput();
+    document.getElementById("col1").oninput();
 
     document.getElementById("rotation").oninput();
     document.getElementById("smoothness").oninput();

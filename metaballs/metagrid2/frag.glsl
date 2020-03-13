@@ -12,11 +12,13 @@ uniform float rotation;
 uniform float density;
 uniform float smoothness;
 uniform float thresh;
+uniform float col1[3];
+uniform float col2[3];
 
 //const vec3 col2 = vec3(0., 0., 0.); //
 //const vec3 col1 = vec3(1., 1., 1.);//
-const vec3 col1 = vec3(0., 0., 0.);//
-const vec3 col2 = vec3(1., 1., 1.);//
+//const vec3 col1 = vec3(0., 0., 0.);//
+//const vec3 col2 = vec3(1., 1., 1.);//
 //  Function from Iñigo Quiles
 //  https://www.shadertoy.com/view/MsS3Wc
 vec3 hsb2rgb( in vec3 c ){
@@ -60,10 +62,10 @@ void main() {
   //d = sin( d * 5. ) * (1.0 + sin( d / 2.0 ));
   //d = mix( sin( d * .5 ), (1.0 + sin( d * 2.0 )), (sin(time * 3.) / 2.) + 0.2 );
   if( d > 0.5*thresh  ) {
-    gl_FragColor = vec4( col1.rgb, 1.0 );
+    gl_FragColor = vec4( col1[0], col1[1], col1[2], 1.0 );
   }
   else {
-    gl_FragColor = vec4( col2.rgb, 1.0 );
+    gl_FragColor = vec4( col2[0], col2[1], col2[2], 1.0 );
   }
   //vec3 color = mix( col1, col2, d );
   //gl_FragColor = vec4( color.rgb, 1.0);
