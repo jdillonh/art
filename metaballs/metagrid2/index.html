@@ -14,6 +14,7 @@
 		background-color: beige;
 		text-align: center;
 		vertical-align: middle;
+		overflow: none;
 
 	    }
 	    canvas {
@@ -27,12 +28,14 @@
 	    {
 		writing-mode: bt-lr; /* IE */
 		-webkit-appearance: slider-vertical; /* WebKit */
-		width: 8px;
+		width: 64px;
 		height: 175px;
 		padding: 0 5px;
 	    }
 	    #reset {
-		border-radius: 50%;
+		border-radius: 10%;
+		width: 100%;
+		height: 100%;
 	    }
 	    #reset:focus {
 		outline: none;
@@ -40,16 +43,40 @@
 	    #reset:active {
 		border: 1px solid black;
 	    }
+	    #controls {
+		padding-top: 5em;
+		display: inline-block;
+		vertical-align: top;
+	    }
+	    #controls tr{
+		background-color: #AAAAAAAA;
+	    }
+
 	</style>
 	<title> metaballs shader </title>
     </head>
     <body>
 	<div id="can-parent">
-	    <input id="reset" type="button" />
-	    <input id="rotation" type="range" min="0.0" max="100.0" orient="vertical"/>
-	    <input id="density" type="range" min="0.0" max="100.0" orient="vertical"/>
-	    <input id="smoothness" type="range" min="0.0" max="100.0" orient="vertical"/>
-	    <input id="thresh" type="range" min="0.0" max="99.0" orient="vertical"/>
+	    <div id="controls">
+		<input id="reset" type="button" />
+		<table>
+		    <tr>
+			<td>
+			    <input id="thresh" type="range" min="0.0" max="99.0" orient="vertical"/>
+			</td>
+			<td>
+			    <input id="rotation" type="range" min="0.0" max="100.0" orient="vertical"/>
+			</td>
+		    </tr>
+		    <tr>
+			<td>
+			    <input id="density" type="range" min="0.0" max="100.0" orient="vertical"/>
+			</td>
+			<td>
+			    <input id="smoothness" type="range" min="0.0" max="100.0" orient="vertical"/>
+			</td>
+		    </tr>
+	    </div
 	</div>
     </body>
     <script src="CCapture.all.min.js" type="text/javascript"></script>
