@@ -1,4 +1,6 @@
-precision mediump float;
+#ifdef GL_ES
+precision highp float;
+#endif
 const int numOrbs = 28;
 
 // lets grab texcoords just for fun
