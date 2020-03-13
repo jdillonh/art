@@ -1,6 +1,5 @@
 precision highp float;
 
-const int numOrbs = 28;
 
 // lets grab texcoords just for fun
 varying vec2 vTexCoord;
@@ -11,7 +10,6 @@ uniform float height;
 uniform float time;
 uniform float rotation;
 uniform float density;
-uniform float orbState[ numOrbs * 3 ];
 uniform float smoothness;
 uniform float thresh;
 
