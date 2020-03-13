@@ -57,13 +57,11 @@ vec3 hsb2rgb( in vec3 c ){
   return c.z * mix( vec3(1.0), rgb, c.y);
 }
 
-vec2 centerPoint = vec2(-1., 0.5);
-
 void main() {
   float AR =  width / height;
   vec2 uv = vTexCoord;
   uv.x *= AR;
-  float sinFactor =  floor(10.0*sin(10.0*distance(uv, centerPoint)));
+  float sinFactor = 50.0 * floor(10.0*sin(10.0*distance(uv, vec2(0.5, 0.5))));
   float d = 0.0; 
   float curr1;
   float curr2;
