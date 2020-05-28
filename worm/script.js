@@ -22,6 +22,12 @@ function setup() {
 	mouseIsDown = false;
     });
     
+    can.touchStarted(() => {
+	mouseIsDown = true;
+    });
+    can.touchEnded(() => {
+	mouseIsDown = false;
+    });
     stroke(255);
     background(0);
 }
