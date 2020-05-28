@@ -4,13 +4,8 @@ var height = window.innerHeight,
     width  = window.innerWidth
 
 
-var wigs = new Array(2);
+var wigs = new Array(30);
 var ctx;
-
-var t = 0
-var dt = 0.0001
-var seedStart = Math.random()/20;
-noiseLib.seed(seedStart);
 
 function setup() {
     can = createCanvas( window.innerWidth,
@@ -24,23 +19,17 @@ function setup() {
 	grad.addColorStop( 1, getRndColor())
 	wigs[i] = new Wiggle(0, 0, width, height, 800, getRndColor() )
     }
-
-    frameRate(30);
     
 }
 
 function draw() {
-    t += dt;
-    t = t % 1.0;
-    console.log(t);
-    noiseLib.seed(seedStart+t);
-    background(0);
-    stroke(255);
+    noLoop()
+    background( 0 )
+    stroke(255)
     //longLine( points )
     //longLine( points2 )
     for( w of wigs ) {
 	w.show()
-	w.init()
     }
     //bigShape( points, points2 )
 
@@ -88,6 +77,7 @@ class Wiggle {
     init() {
 
 	//setup points
+	noiseLib.seed( Math.random() )
 
 	for( let i = 0; i < this.points1.length; i++ ) {
 	    let prog = i / this.points1.length
@@ -100,7 +90,8 @@ class Wiggle {
 					     Math.sin( prog*TWO_PI*noiseVal))
 	}
 	let off = 2000 
-	//noiseSeed(Math.random()*100)
+	noiseLib.seed(Math.random())
+	noiseSeed(Math.random()*100)
 	for( let i = 0; i < this.points2.length; i++ ) {
 	    let prog = i / this.points2.length
 	    let noiseVal = noiseLib.simplex2(prog + 100 , off )
